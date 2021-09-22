@@ -1,22 +1,18 @@
 //Form stands for the two forms: insert title and insert description of the notes
 import React from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { useState } from 'react';
 
-export default React.forwardRef(function Form(props, ref){
-    const [val, setVal] = useState('');
+export default function Form(props){
     return(
         <View>
             <Text style={styles.titolo}>{props.titolo}</Text>
                 <TextInput
-                value={val}
                 style={styles.input}
                 placeholder={props.input}
-                ref={ref}
-                onChangeText={(newVal) => setVal(newVal)}
+                onChangeText={(value) => props.imposta(value)}
                 />
         </View>)
-});
+}
 
 const styles=StyleSheet.create({
     titolo:{
@@ -29,18 +25,8 @@ const styles=StyleSheet.create({
     input:{
         textAlign: 'center',
         borderWidth: 2,
+        borderRadius: 8,
         margin: 10,
         padding: 5,
     }
 })
-
-/*export default function Form(props){
-    return(
-        <View>
-            <Text style={styles.titolo}>{props.titolo}</Text>
-            <TextInput
-            style={styles.input}
-            placeholder={props.input}/>
-        </View>
-    )
-}*/
